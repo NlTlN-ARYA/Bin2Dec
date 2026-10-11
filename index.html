@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin2Dec | Binary Converter</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 32px;
+            background: #1e293b;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+            color: #38bdf8;
+        }
+
+        p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            margin: 18px 0 12px;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            background: #0f172a;
+            color: white;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #38bdf8;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #7dd3fc;
+        }
+
+        #result {
+            margin-top: 22px;
+            font-size: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .hint {
+            font-size: 13px;
+            margin-top: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bin2Dec</h1>
+        <p>Convert binary numbers to decimal numbers.</p>
+
+        <input
+            type="text"
+            id="binaryInput"
+            placeholder="Enter binary, e.g. 1011"
+            autocomplete="off"
+        >
+
+        <button onclick="convertBinary()">Convert to Decimal</button>
+        <script>
+    document.getElementById("binaryInput").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            convertBinary();
+        }
+        });
+        </script>
+
+        <div id="result" aria-live="polite"></div>
+
+        <p class="hint">Binary digits allowed: 0 and 1</p>
+    </div>
+
+    <script>
+        function convertBinary() {
+            const input = document
+                .getElementById("binaryInput")
+                .value.trim();
+
+            const result = document.getElementById("result");
+
+            if (input === "") {
+                result.textContent = "Please enter a binary number.";
+                return;
+            }
+
+            if (!/^[01]+$/.test(input)) {
+                result.textContent =
+                    "Invalid input! Use only 0 and 1.";
+                return;
+            }
+
+            let decimal = 0;
+
+            for (const digit of input) {
+                decimal = decimal * 2 + Number(digit);
+            }
+
+            result.textContent = "Decimal: " + decimal;
+        }
+    </script>
+</body>
+</html>
