@@ -57,4 +57,8 @@ The Decimal equivalent is : 11
 
 ## Author
 
+Nitin Arya
+
+GitHub: @NlTlN-ARYA
+
 Created as part of my weekly programming project practice.
